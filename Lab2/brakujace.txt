@@ -1,0 +1,4 @@
+przesył obrazkow i zapis ich w wwwroot/images
+walidacja atrybutami ze login i haslo to tylko cyfry i literki + znak '_'
+walidacja ajaxowa czegos tam
+user moze zmienic sobie avatar i haslo w user/edit

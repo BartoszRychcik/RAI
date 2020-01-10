@@ -1,0 +1,242 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Aplikacja ZTM vue.js do projektu RAI",
+    "version": "1.0.0",
+    "title": "Aplikacja ZTM vue.js",
+    "contact": {
+      "email": "bartosz.rychcik@gmail.com",
+      "name": "Bartosz Rychcik 165659"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:3000",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Everything about users in MongoDB"
+    },
+    {
+      "name": "busstop",
+      "description": "Everything about busstops"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/busstop/{id}": {
+      "get": {
+        "tags": [
+          "busstop"
+        ],
+        "summary": "Return data from ZTM by busstop",
+        "description": "Should return data from ZTM API.",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "busstop id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Busstop not exists"
+          }
+        }
+      }
+    },
+    "/api/userslist": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Return all users from database",
+        "description": "Should returns all users from database.",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Wrong reading model"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create new user",
+        "description": "Should creates a new user in database.",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "description": "user data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Wrong parameters"
+          },
+          "404": {
+            "description": "User already exists"
+          }
+        }
+      }
+    },
+    "/api/userslist/{login}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user data by user name",
+        "description": "Should returns exactly one user",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "path",
+            "description": "user login",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Wrong reading model"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update user by user name",
+        "description": "Should update exactly one user",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "path",
+            "description": "user login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "description": "user update data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Wrong reading model"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Delete user",
+        "description": "Should remove exactly one user",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "path",
+            "description": "user login",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Wrong reading model"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "busstops": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "login": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
